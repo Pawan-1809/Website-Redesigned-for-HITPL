@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --secondary: #1c1c1c;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --glass-bg: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='light'] {
+  --background: #fcfcfc;
+  --foreground: #0a0a0a;
+  --secondary: #f3f4f6;
+  --card-bg: rgba(0, 0, 0, 0.03);
+  --border-color: rgba(0, 0, 0, 0.08);
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #ffb703;
+  --color-secondary: var(--secondary);
+  --color-accent: #fb8500;
+  --color-muted: var(--text-muted);
+  --color-border-theme: var(--border-color);
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-logo: 'Outfit', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+  
+  ::selection {
+    background-color: var(--color-primary);
+    color: #000000;
+  }
+}
+
+/* Custom utility for glassmorphism */
+@layer utilities {
+  .glass {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .glass-dark {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+  }
+}
+
+/* Base styles for Lenis Smooth Scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
